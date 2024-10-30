@@ -12,7 +12,7 @@ import java.util.List;
  * @author INTEL
  */
 public interface IMonedas {
-    
+    public boolean agregarMoneda(MonedaModel u);
      public List<MonedaModel>  listarUsuario();
     
 }

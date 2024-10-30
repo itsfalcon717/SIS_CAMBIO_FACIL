@@ -24,7 +24,13 @@ public class MonedaModel {
         this.es_default = es_default;
         this.imagen = imagen;
     }
-
+  public MonedaModel(String moneda, String abreviatura, boolean activo, boolean es_default) {
+        this.moneda = moneda;
+        this.abreviatura = abreviatura;
+        this.activo = activo;
+        this.es_default = es_default;
+       // this.imagen = imagen;
+    }
     public int getId() {
         return id;
     }

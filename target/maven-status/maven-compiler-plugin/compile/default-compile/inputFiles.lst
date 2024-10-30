@@ -1,10 +1,12 @@
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\DAO\Interface\sis_cambio_facil\IMonedas.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\DAO\Interface\sis_cambio_facil\IUsuario.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\model\sis_cambio_facil\MonedaModel.java
+C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\model\sis_cambio_facil\RolesModel.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\model\sis_cambio_facil\UsuarioModel.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\Service\sis_cambio_facil\ConexionBD.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\Service\sis_cambio_facil\MonedaService.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\Service\sis_cambio_facil\UsuarioService.java
+C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\Utils\Constantes.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\view\sis_cambio_facil\Dashboard.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\view\sis_cambio_facil\LoginView.java
 C:\Users\INTEL\Desktop\PROYECTOS\JAVA\SISCAMBIOFACIL\SIS_CAMBIO_FACIL\src\main\java\com\view\sis_cambio_facil\MonedaView.java

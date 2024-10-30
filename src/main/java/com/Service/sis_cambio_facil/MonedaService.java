@@ -6,6 +6,7 @@ package com.Service.sis_cambio_facil;
 
 import com.DAO.Interface.sis_cambio_facil.IMonedas;
 import com.model.sis_cambio_facil.MonedaModel;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +47,28 @@ public class MonedaService implements IMonedas {
         } finally {
         }
         return listaMonedas; // Retorna la lista de usuarios
+    }
+
+    @Override
+    public boolean agregarMoneda(MonedaModel u) {
+        ConexionBD con = new ConexionBD();
+        PreparedStatement preSta;
+        try {
+
+            String sql = "INSERT INTO monedas(moneda,abreviatura,activo,es_default,imagen) values(?,?,?,?,?)";
+            preSta = con.getConnection().prepareStatement(sql);
+            preSta.setString(1, u.getMoneda());
+            preSta.setString(2, u.getAbreviatura());
+            preSta.setBoolean(3, u.isActivo());
+            preSta.setBoolean(4, u.isEs_default());
+            preSta.setString(5, u.getImagen());
+            preSta.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+        }
+        return false;
     }
 
 }

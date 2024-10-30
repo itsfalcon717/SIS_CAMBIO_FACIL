@@ -22,25 +22,29 @@ public class MonedaView extends javax.swing.JPanel {
      */
     public MonedaView() {
         initComponents();
+        colummTabla();
         listarMonedas();
+    }
+
+    private void colummTabla() {
+        ArrayList<Object> nombreColumna = new ArrayList<>();
+        nombreColumna.removeAll(nombreColumna);
+        nombreColumna.add("ID");
+        nombreColumna.add("Nombre");
+        nombreColumna.add("Abreviatura");
+        nombreColumna.add("Activo");
+        nombreColumna.add("Defecto");
+        nombreColumna.add("Imagen");
+
+        for (Object columna : nombreColumna) {
+            modelo.addColumn(columna);
+        }
     }
 
     private void listarMonedas() {
         MonedaService moneda = new MonedaService();
         try {
-            ArrayList<Object> nombreColumna = new ArrayList<>();
-            nombreColumna.removeAll(nombreColumna);
-            nombreColumna.add("ID");
-            nombreColumna.add("Nombre");
-            nombreColumna.add("Abreviatura");
-            nombreColumna.add("Activo");
-            nombreColumna.add("Defecto");
-            nombreColumna.add("Imagen");
-
-            for (Object columna : nombreColumna) {
-                modelo.addColumn(columna);
-            }
-
+            modelo.setRowCount(0);
             for (MonedaModel i : moneda.listarUsuario()) {
                 modelo.addRow(new Object[]{i.getId(),
                     i.getMoneda(),
@@ -58,6 +62,12 @@ public class MonedaView extends javax.swing.JPanel {
         }
     }
 
+    private void agregarMoney() {
+        MonedaModel usuario = new MonedaModel(txtMoneda.getText(), txtAbreviatura.getText(), chkActivo.isSelected(), chkDefault.isSelected());
+        MonedaService usuarioSer = new MonedaService();
+        usuarioSer.agregarMoneda(usuario);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,11 +80,11 @@ public class MonedaView extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         head = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMoneda = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        txtAbreviatura = new javax.swing.JTextField();
+        chkActivo = new javax.swing.JCheckBox();
+        chkDefault = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -108,13 +118,18 @@ public class MonedaView extends javax.swing.JPanel {
 
         jLabel2.setText("Moneda");
 
-        jCheckBox1.setText("Activo");
+        chkActivo.setText("Activo");
 
-        jCheckBox2.setText("Default");
+        chkDefault.setText("Default");
 
         jLabel3.setText("Abreviatura");
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Aactualizar");
 
@@ -150,14 +165,14 @@ public class MonedaView extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1)
+                        .addComponent(txtMoneda)
                         .addGap(76, 76, 76))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField2)
+                        .addComponent(txtAbreviatura)
                         .addGap(173, 173, 173)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(chkDefault, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkActivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
@@ -185,16 +200,16 @@ public class MonedaView extends javax.swing.JPanel {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAbreviatura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jCheckBox1)
+                        .addComponent(chkActivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox2))
+                        .addComponent(chkDefault))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,22 +235,28 @@ public class MonedaView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        agregarMoney();
+        listarMonedas();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox chkActivo;
+    private javax.swing.JCheckBox chkDefault;
     private javax.swing.JPanel head;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tbMoneda;
+    private javax.swing.JTextField txtAbreviatura;
+    private javax.swing.JTextField txtMoneda;
     // End of variables declaration//GEN-END:variables
 }

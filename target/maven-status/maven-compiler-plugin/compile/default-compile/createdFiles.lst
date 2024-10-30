@@ -2,6 +2,7 @@ com\view\sis_cambio_facil\MonedaView.class
 com\view\sis_cambio_facil\TransaccionesView.class
 com\DAO\Interface\sis_cambio_facil\IUsuario.class
 com\view\sis_cambio_facil\TiposCambio$6.class
+com\view\sis_cambio_facil\MonedaView$1.class
 com\Service\sis_cambio_facil\MonedaService.class
 com\view\sis_cambio_facil\LoginView.class
 com\view\sis_cambio_facil\TipoCambioView.class
@@ -11,6 +12,7 @@ com\view\sis_cambio_facil\Dashboard$3.class
 com\view\sis_cambio_facil\LoginView$2.class
 com\model\sis_cambio_facil\MonedaModel.class
 com\view\sis_cambio_facil\Dashboard$4.class
+com\view\sis_cambio_facil\UsuariosView$1.class
 com\view\sis_cambio_facil\Dashboard.class
 com\view\sis_cambio_facil\TiposCambio$2.class
 com\view\sis_cambio_facil\Dashboard$1.class
@@ -18,6 +20,7 @@ com\view\sis_cambio_facil\LoginView$5.class
 com\view\sis_cambio_facil\TiposCambio$5.class
 com\view\sis_cambio_facil\TiposCambio.class
 com\Service\sis_cambio_facil\UsuarioService.class
+com\Utils\Constantes.class
 com\view\sis_cambio_facil\LoginView$8.class
 com\view\sis_cambio_facil\TiposCambio$1.class
 com\view\sis_cambio_facil\PrincipalView$1.class
@@ -30,6 +33,7 @@ com\view\sis_cambio_facil\ReporteView.class
 com\Service\sis_cambio_facil\ConexionBD.class
 com\view\sis_cambio_facil\PrincipalView.class
 com\DAO\Interface\sis_cambio_facil\IMonedas.class
+com\model\sis_cambio_facil\RolesModel.class
 com\view\sis_cambio_facil\Dashboard$6.class
 com\view\sis_cambio_facil\LoginView$4.class
 com\view\sis_cambio_facil\Dashboard$2.class

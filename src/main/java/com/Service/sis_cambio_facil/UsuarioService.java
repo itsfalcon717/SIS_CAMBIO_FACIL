@@ -6,6 +6,7 @@ package com.Service.sis_cambio_facil;
 
 import com.DAO.Interface.sis_cambio_facil.IUsuario;
 import com.model.sis_cambio_facil.UsuarioModel;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,24 @@ public class UsuarioService implements IUsuario {
 
     @Override
     public boolean agregarUsuario(UsuarioModel u) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ConexionBD con = new ConexionBD();
+        PreparedStatement preSta;
+        try {
+           
+            String sql = "INSERT INTO usuarios(nombre,email,password,rol) values(?,?,?,?)";
+             preSta = con.getConnection().prepareStatement(sql);
+             preSta.setString(1, u.getNombre());
+             preSta.setString(2, u.getEmail());
+             preSta.setString(3, u.getPassword());
+             preSta.setString(4, u.getRol());
+             preSta.executeUpdate();
+             
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+        }
+        return false;
     }
 
     @Override
