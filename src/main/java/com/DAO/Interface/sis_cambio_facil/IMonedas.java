@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface IMonedas {
     public boolean agregarMoneda(MonedaModel u);
-     public List<MonedaModel>  listarUsuario();
+     public List<MonedaModel>  listarMoneda();
     
 }

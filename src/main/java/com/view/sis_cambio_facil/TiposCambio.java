@@ -4,6 +4,9 @@
  */
 package com.view.sis_cambio_facil;
 
+import com.Service.sis_cambio_facil.MonedaService;
+import com.model.sis_cambio_facil.MonedaModel;
+
 /**
  *
  * @author INTEL
@@ -15,6 +18,22 @@ public class TiposCambio extends javax.swing.JFrame {
      */
     public TiposCambio() {
         initComponents();
+        listarMonedas();
+    }
+    
+      private void listarMonedas() {
+       MonedaService monedaService = new MonedaService();
+    try {
+        cboMoneda.removeAllItems(); // Limpia los elementos existentes
+
+        // Itera sobre la lista de monedas y agrega solo el nombre al JComboBox
+        for (MonedaModel moneda : monedaService.listarMoneda()) {
+            cboMoneda.addItem(moneda.getMoneda()); // Agrega el nombre de la moneda
+        }
+
+    } catch (Exception e) {
+        System.out.println("Error al cargar la lista de monedas en el JComboBox: " + e);
+    }
     }
 
     /**
@@ -28,12 +47,12 @@ public class TiposCambio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
-        txtNombreDivisa = new javax.swing.JTextField();
+        txtVenta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        txtNombreDivisa1 = new javax.swing.JTextField();
+        cboMoneda = new javax.swing.JComboBox<>();
+        txtCompra = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,21 +67,21 @@ public class TiposCambio extends javax.swing.JFrame {
         label1.setForeground(new java.awt.Color(255, 239, 130));
         label1.setText("INGRESAS LOS TIPOS DE CAMBIO DEL DIA");
 
-        txtNombreDivisa.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtNombreDivisa.addActionListener(new java.awt.event.ActionListener() {
+        txtVenta.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreDivisaActionPerformed(evt);
+                txtVentaActionPerformed(evt);
             }
         });
-        txtNombreDivisa.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreDivisaKeyPressed(evt);
+                txtVentaKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreDivisaKeyReleased(evt);
+                txtVentaKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreDivisaKeyTyped(evt);
+                txtVentaKeyTyped(evt);
             }
         });
 
@@ -78,24 +97,24 @@ public class TiposCambio extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Venta");
 
-        jComboBox1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboMoneda.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        cboMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        txtNombreDivisa1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtNombreDivisa1.addActionListener(new java.awt.event.ActionListener() {
+        txtCompra.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreDivisa1ActionPerformed(evt);
+                txtCompraActionPerformed(evt);
             }
         });
-        txtNombreDivisa1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCompra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreDivisa1KeyPressed(evt);
+                txtCompraKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreDivisa1KeyReleased(evt);
+                txtCompraKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreDivisa1KeyTyped(evt);
+                txtCompraKeyTyped(evt);
             }
         });
 
@@ -127,11 +146,11 @@ public class TiposCambio extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtNombreDivisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
-                                .addComponent(txtNombreDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 73, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -146,15 +165,15 @@ public class TiposCambio extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNombreDivisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNombreDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 55, Short.MAX_VALUE))
@@ -175,38 +194,38 @@ public class TiposCambio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreDivisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreDivisaActionPerformed
+    private void txtVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDivisaActionPerformed
+    }//GEN-LAST:event_txtVentaActionPerformed
 
-    private void txtNombreDivisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDivisaKeyPressed
+    private void txtVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVentaKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDivisaKeyPressed
+    }//GEN-LAST:event_txtVentaKeyPressed
 
-    private void txtNombreDivisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDivisaKeyReleased
+    private void txtVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVentaKeyReleased
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_txtNombreDivisaKeyReleased
+    }//GEN-LAST:event_txtVentaKeyReleased
 
-    private void txtNombreDivisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDivisaKeyTyped
+    private void txtVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVentaKeyTyped
 
-    }//GEN-LAST:event_txtNombreDivisaKeyTyped
+    }//GEN-LAST:event_txtVentaKeyTyped
 
-    private void txtNombreDivisa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreDivisa1ActionPerformed
+    private void txtCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCompraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDivisa1ActionPerformed
+    }//GEN-LAST:event_txtCompraActionPerformed
 
-    private void txtNombreDivisa1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDivisa1KeyPressed
+    private void txtCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompraKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDivisa1KeyPressed
+    }//GEN-LAST:event_txtCompraKeyPressed
 
-    private void txtNombreDivisa1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDivisa1KeyReleased
+    private void txtCompraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompraKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDivisa1KeyReleased
+    }//GEN-LAST:event_txtCompraKeyReleased
 
-    private void txtNombreDivisa1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDivisa1KeyTyped
+    private void txtCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompraKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDivisa1KeyTyped
+    }//GEN-LAST:event_txtCompraKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -251,14 +270,14 @@ public class TiposCambio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboMoneda;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
-    private javax.swing.JTextField txtNombreDivisa;
-    private javax.swing.JTextField txtNombreDivisa1;
+    private javax.swing.JTextField txtCompra;
+    private javax.swing.JTextField txtVenta;
     // End of variables declaration//GEN-END:variables
 }

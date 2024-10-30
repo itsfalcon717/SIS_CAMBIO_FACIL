@@ -159,6 +159,11 @@ public class UsuariosView extends javax.swing.JPanel {
         btnEliminar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 239, 130));
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(24, 24, 23));
         jSeparator1.setForeground(new java.awt.Color(24, 24, 23));
@@ -283,6 +288,22 @@ public class UsuariosView extends javax.swing.JPanel {
         guardarUsuario();
         listarTablaUsuario();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        UsuarioService usuarioSer = new UsuarioService();
+        int filaSeleccionada = tbUsuarios.getSelectedRow();
+        Integer idSeleccionado = null; 
+
+        if (filaSeleccionada != -1) {
+             idSeleccionado = (int) tbUsuarios.getValueAt(filaSeleccionada, 0);
+            System.out.println("ID seleccionado: " + idSeleccionado);
+        } else {
+            System.out.println("No hay ninguna fila seleccionada.");
+        }
+        usuarioSer.eliminarUsuario(idSeleccionado);
+        listarTablaUsuario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -42,10 +42,12 @@ public class MonedaView extends javax.swing.JPanel {
     }
 
     private void listarMonedas() {
+        progressBar.setVisible(true);
+        progressBar.setIndeterminate(true);
         MonedaService moneda = new MonedaService();
         try {
             modelo.setRowCount(0);
-            for (MonedaModel i : moneda.listarUsuario()) {
+            for (MonedaModel i : moneda.listarMoneda()) {
                 modelo.addRow(new Object[]{i.getId(),
                     i.getMoneda(),
                     i.getAbreviatura(),
@@ -56,9 +58,10 @@ public class MonedaView extends javax.swing.JPanel {
             }
             //se actualiza la Tabla
             tbMoneda.setModel(modelo);
-
+            progressBar.setVisible(false);
         } catch (Exception e) {
             System.out.println("Error en cargar a la tabla moneda: " + e);
+            progressBar.setVisible(false);
         }
     }
 
@@ -92,6 +95,7 @@ public class MonedaView extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbMoneda = new javax.swing.JTable();
+        progressBar = new javax.swing.JProgressBar();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -134,6 +138,11 @@ public class MonedaView extends javax.swing.JPanel {
         jButton2.setText("Aactualizar");
 
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("imagen");
@@ -188,6 +197,10 @@ public class MonedaView extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1)
                 .addGap(30, 30, 30))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(285, 285, 285)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +224,9 @@ public class MonedaView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(chkDefault))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(5, 5, 5)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,6 +256,10 @@ public class MonedaView extends javax.swing.JPanel {
         listarMonedas();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chkActivo;
@@ -255,6 +274,7 @@ public class MonedaView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JProgressBar progressBar;
     private javax.swing.JTable tbMoneda;
     private javax.swing.JTextField txtAbreviatura;
     private javax.swing.JTextField txtMoneda;

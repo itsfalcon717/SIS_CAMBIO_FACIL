@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class MonedaService implements IMonedas {
 
     @Override
-    public List<MonedaModel> listarUsuario() {
+    public List<MonedaModel> listarMoneda() {
         List<MonedaModel> listaMonedas = new ArrayList<>();
         ConexionBD con = new ConexionBD();
         Statement stmt;

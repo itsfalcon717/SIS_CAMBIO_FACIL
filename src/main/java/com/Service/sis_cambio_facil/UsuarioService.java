@@ -26,15 +26,15 @@ public class UsuarioService implements IUsuario {
         ConexionBD con = new ConexionBD();
         PreparedStatement preSta;
         try {
-           
+
             String sql = "INSERT INTO usuarios(nombre,email,password,rol) values(?,?,?,?)";
-             preSta = con.getConnection().prepareStatement(sql);
-             preSta.setString(1, u.getNombre());
-             preSta.setString(2, u.getEmail());
-             preSta.setString(3, u.getPassword());
-             preSta.setString(4, u.getRol());
-             preSta.executeUpdate();
-             
+            preSta = con.getConnection().prepareStatement(sql);
+            preSta.setString(1, u.getNombre());
+            preSta.setString(2, u.getEmail());
+            preSta.setString(3, u.getPassword());
+            preSta.setString(4, u.getRol());
+            preSta.executeUpdate();
+
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioService.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,7 +45,19 @@ public class UsuarioService implements IUsuario {
 
     @Override
     public String eliminarUsuario(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ConexionBD con = new ConexionBD();
+        PreparedStatement preSta;
+        try {
+            String sql = "DELETE FROM usuarios where id=?";
+            preSta = con.getConnection().prepareStatement(sql);
+            preSta.setInt(1, id);
+            preSta.executeUpdate();
+            return "Eliminado";
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return "No fue Eliminado el usuario con Id: " + id;
     }
 
     @Override
@@ -69,8 +81,8 @@ public class UsuarioService implements IUsuario {
                 String password = rs.getString("password"); // Obtén el password
                 String rol = rs.getString("rol"); // Obtén el password
                 // Crea un nuevo UsuarioModel y añádelo a la lista
-                UsuarioModel usuario = new UsuarioModel(usuarioId,nombre, email, password, rol);
-                listaUsuarios.add(usuario);  
+                UsuarioModel usuario = new UsuarioModel(usuarioId, nombre, email, password, rol);
+                listaUsuarios.add(usuario);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioService.class.getName()).log(Level.SEVERE, null, ex);
